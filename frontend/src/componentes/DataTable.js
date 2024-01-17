@@ -1,47 +1,59 @@
 import React from 'react';
 
-const DataTable = ({ data }) => {
-  // Función para calcular la suma total de una columna
-  const calcularTotalColumna = (indiceColumna) => {
-    return data.reduce((total, fila) => total + fila.valores[indiceColumna], 0);
+const ProgressBar = ({ percentage }) => {
+  let color = '';
+  if (percentage <= 33) {
+    color = 'red'; // color para el rango 0-33%
+  } else if (percentage <= 66) {
+    color = 'yellow'; // color para el rango 34-66%
+  } else {
+    color = 'green'; // color para el rango 67-100%
+  }
+
+  const progressStyle = {
+    width: `${percentage}%`,
+    backgroundColor: color,
+    height: '20px',
   };
 
+  return <div style={progressStyle}></div>;
+};
+
+const TableComponent = ({ data }) => {
   return (
     <table>
       <thead>
         <tr>
           <th>Categoría</th>
-          {/* Encabezados de columna */}
-          {data[0].valores.map((valor, index) => (
-            <th key={index}>Columna {index + 1}</th>
-          ))}
-          <th>Total</th>
+          <th>Número</th>
         </tr>
       </thead>
       <tbody>
-        {/* Filas de datos */}
-        {data.map((fila, index) => (
-          <tr key={index}>
-            <td>{fila.categoria}</td>
-            {fila.valores.map((valor, index) => (
-              <td key={index}>{valor}</td>
-            ))}
-            {/* Celda de total por fila */}
-            <td>{fila.valores.reduce((total, valor) => total + valor, 0)}</td>
-          </tr>
+        {data.categorias.map((categoria, index) => (
+          <React.Fragment key={index}>
+            <tr>
+              <td>{categoria.nombre}</td>
+              <td>{categoria.indicadores.indicador1}</td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <ProgressBar percentage={categoria.indicadores.indicador1} />
+              </td>
+            </tr>
+            <tr>
+              <td>{categoria.nombre}</td>
+              <td>{categoria.indicadores.indicador2}</td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <ProgressBar percentage={categoria.indicadores.indicador2} />
+              </td>
+            </tr>
+          </React.Fragment>
         ))}
-        {/* Última fila para mostrar la suma total de cada columna */}
-        <tr>
-          <td>Total</td>
-          {data[0].valores.map((valor, index) => (
-            <td key={index}>{calcularTotalColumna(index)}</td>
-          ))}
-          {/* Celda de suma total */}
-          <td>{calcularTotalColumna(0)}</td>
-        </tr>
       </tbody>
     </table>
   );
 };
 
-export default DataTable;
+export default TableComponent;

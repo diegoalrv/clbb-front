@@ -3,28 +3,28 @@ import React from 'react';
 const TableComponent = ({ data }) => {
   if ( !data || !data.indicadores) {
     console.log("hola---- SIN DATOS")
-    return null; // O puedes manejarlo de otra manera según tus necesidades
+    return null; 
   }
 
-  // Función para obtener el color en la escala de azules basado en el valor
+  
   const getBlueScaleColor = (value) => {
-    // Ajusta estos valores según tu preferencia
-    const minColorValue = 0; // Valor mínimo para el color más claro
-    const maxColorValue = 100; // Valor máximo para el color más oscuro
-    const saturation = 80; // Saturación del color
+    
+    const minColorValue = 0; 
+    const maxColorValue = 100; 
+    const saturation = 80;
 
-    // Escala de color en formato HSL (Hue, Saturation, Lightness)
+   
     const hue = 240 - Math.round((value - minColorValue) / (maxColorValue - minColorValue) * 120); // Ajusta 120 según tu preferencia
-    const lightness = 50; // Ajusta la luminosidad según tu preferencia
+    const lightness = 50; 
 
-    // Convierte HSL a RGB
+   
     const rgbColor = hslToRgb(hue, saturation, lightness);
 
-    // Devuelve el color en formato RGB
+    
     return `rgb(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]})`;
   };
 
-  // Función para convertir HSL a RGB
+ 
   const hslToRgb = (h, s, l) => {
     h /= 360;
     s /= 100;
@@ -33,7 +33,7 @@ const TableComponent = ({ data }) => {
     let r, g, b;
 
     if (s === 0) {
-      r = g = b = l; // A tono de gris
+      r = g = b = l; 
     } else {
       const hue2rgb = (p, q, t) => {
         if (t < 0) t += 1;
@@ -55,7 +55,7 @@ const TableComponent = ({ data }) => {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
   };
 
-  // Calcula los totales por columna
+ 
   const columnTotals = data.indicadores.map((indicador, index) => {
     const total = data.ciudades.reduce((sum, ciudad) => sum + ciudad.valores[index], 0);
     return total;

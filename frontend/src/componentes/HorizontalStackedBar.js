@@ -5,7 +5,7 @@ const HorizontalStackedBarChart = ({ data }) => {
   useEffect(() => {
     const ctx = document.getElementById('horizontalStackedBarChart').getContext('2d');
 
-    const levels = ['Bajo', 'Medio', 'Alto'];
+    const levels = ['Alta', 'Media', 'Baja'];
     const colors = ['#42E2B8', '#2D82B7', '#2E3192'];
 
     const chart = new Chart(ctx, {
@@ -25,7 +25,7 @@ const HorizontalStackedBarChart = ({ data }) => {
           x: {
             stacked: true,
             min: 0,
-            max: 200,
+            max: 100,
             grid: {
               color: 'rgba(255, 255, 255, 0.3)',
             },

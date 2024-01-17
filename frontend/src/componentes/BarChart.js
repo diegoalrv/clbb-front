@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
 const StackedBarChart = ({ data }) => {
+  const xLabels = data.xLabels;
+
   useEffect(() => {
     const ctx = document.getElementById('stackedBarChart').getContext('2d');
 
@@ -10,7 +12,7 @@ const StackedBarChart = ({ data }) => {
     const chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: data.barras[0].valores.map((_, index) => `Set N° ${index + 1}`),
+        labels: xLabels,
         datasets: data.barras.map((barra, index) => ({
           label: barra.nombre,
           data: barra.valores,
@@ -34,7 +36,7 @@ const StackedBarChart = ({ data }) => {
               drawTicks: false,
             },
             ticks: {
-              stepSize: 20,
+              display: false, // Oculta los números del eje y
             },
           },
         },
@@ -48,7 +50,7 @@ const StackedBarChart = ({ data }) => {
     return () => {
       chart.destroy();
     };
-  }, [data]);
+  }, [data, xLabels]);
 
   return <canvas id="stackedBarChart" width="400" height="400"></canvas>;
 };
