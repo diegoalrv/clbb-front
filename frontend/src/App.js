@@ -37,17 +37,18 @@ const App = () => {
             <h3>Gráfico de Radar</h3>
           </div>
           <RadarChart data={data.radar}/>
-          <div style={{ position: 'absolute', top: 200, right: 100, color: 'white', zIndex: 2 }}>
+          <div style={{ position: 'absolute', top: 200, right: 50, color: 'white', zIndex: 2, fontSize: '30px' }}>
             <p>Proximidad</p>
           </div>
-		  <div style={{ position: 'absolute', top: 780, right: 475, color: 'white', zIndex: 2 }}>
+		      <div style={{ position: 'absolute', top: 800, right: 475, color: 'white', zIndex: 2, fontSize: '30px' }}>
             <p>Diversidad</p>
           </div>
-		  <div style={{ position: 'absolute', top: 350, right: 700, color: 'white', zIndex: 2 }}>
+		      <div style={{ position: 'absolute', top: 330, right: 750, color: 'white', zIndex: 2, fontSize: '30px' }}>
             <p>Densidad</p>
           </div>
-		  
-          <MapLegend leyendas={leyendasData.leyendas} />
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <MapLegend leyendas={leyendasData.leyendas} />
+          </div>
         </div>
       </div>
       <div className="columna3">

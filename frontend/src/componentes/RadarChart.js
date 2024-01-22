@@ -38,11 +38,17 @@ const RadarChart = ({ data }) => {
             beginAtZero: true,
             min: 0,
             max: 100,
-            stepSize: 20,
+            stepSize: 5,
             grid: {
               color: 'white',
               borderWidth: 5,
             },
+            pointLabels: {
+              font: {
+                size: 16
+              },
+              color: 'white',
+            }
           },
         },
       },

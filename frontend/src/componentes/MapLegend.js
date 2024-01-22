@@ -1,36 +1,50 @@
 import React from 'react';
 
-const MapLegend = ({ leyendas }) => {
+const MapLegend = ({ data }) => {
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
       <h3>Leyendas del Mapa</h3>
-      <div style={{ display: 'flex' }}>
-        {leyendas.map((leyenda, index) => (
-          <div key={index} style={{
-            marginRight: '0px',
-            alignContent: 'center',
-            alignItems: 'center',
-            alignTracks: 'center',
-            fontSize: 30,
-            }}>
-            <span
-              style={{
-                backgroundColor: leyenda.color,
-                width: '30px',
-                height: '30px',
-                display: 'inline-block',
-                marginRight: '5px',
-                marginLeft: '5px',
-                alignContent: 'center',
-                alignTracks: 'center',
-              }}
-            ></span>
-            {leyenda.name}
-          </div>
-        ))}
-      </div>
+          <div style={{
+            width: '30px',  // Ancho de la barra de colores en gradiente
+            height: '20px',  // Altura de la barra de colores en gradiente
+          }}></div>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <div style={{
+                width: '300px',  // Ancho de la barra de colores en gradiente
+                height: '20px',  // Altura de la barra de colores en gradiente
+                background: 'linear-gradient(to right, #ff0000, #FFFF00, #00FF00)', // Definición del gradiente
+              }}></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{
+                  width: '15px',  // Ancho de la barra de colores en gradiente
+                  height: '20px',  // Altura de la barra de colores en gradiente
+                }}></div>
+                <span>Inicio</span>
+                <div style={{
+                  width: '80px',  // Ancho de la barra de colores en gradiente
+                  height: '20px',  // Altura de la barra de colores en gradiente
+                }}></div>
+                <span>Medio</span>
+                <div style={{
+                  width: '80px',  // Ancho de la barra de colores en gradiente
+                  height: '20px',  // Altura de la barra de colores en gradiente
+                }}></div>
+                <span>Fin</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
+
 
 export default MapLegend;
