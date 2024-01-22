@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import RadarChart from './componentes/RadarChart';
 import PieChart from './componentes/PieChart';
@@ -40,7 +40,7 @@ const App = () => {
           <div style={{ position: 'absolute', top: 200, right: 50, color: 'white', zIndex: 2, fontSize: '30px' }}>
             <p>Proximidad</p>
           </div>
-		      <div style={{ position: 'absolute', top: 800, right: 475, color: 'white', zIndex: 2, fontSize: '30px' }}>
+		      <div style={{ position: 'absolute', top: 740, right: 475, color: 'white', zIndex: 2, fontSize: '30px' }}>
             <p>Diversidad</p>
           </div>
 		      <div style={{ position: 'absolute', top: 330, right: 750, color: 'white', zIndex: 2, fontSize: '30px' }}>
@@ -58,13 +58,13 @@ const App = () => {
 		 
         </div>
 		
-	    <div className="grafico" >
+	    {/* <div className="grafico" >
           <h3>Tabla Semaforo</h3>
           
 		  
-		  <TablaSemaforo  data={tabla.tablaSemaforo}/>
-        </div>
-        <div style={{ position: 'absolute', top: 900, right: 5, color: 'white', zIndex: 2 }}>
+		  <TablaSemaforo  data={tabla.tablaSemaforo}/> */}
+        {/* </div> */}
+        <div style={{ position: 'absolute', top: 900, right: 50, color: 'white', zIndex: 2 }}>
 		  <img
 			src="https://citylabbiobio.cl/wp-content/uploads/2023/08/logo-CLBB-ch.png"
 			alt="CityLab Biobío"
