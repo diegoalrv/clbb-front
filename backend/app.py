@@ -1,5 +1,7 @@
 from fastapi import FastAPI, Request, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+
 import json
 import asyncio
 import websockets
@@ -18,23 +20,38 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Función para enviar datos a todos los clientes WebSocket
+async def send_data_to_clients(data):
+    print(data)
+    for client in websocket_clients:
+        await client.send_json(data)
+
 @app.post("/receive_data")
 async def recibir_json(request: Request):
     data = await request.json()
     with open("/app/data/data.json", "w") as file:
         json.dump(data, file)
 
-    # Notificar a todos los clientes WebSocket sobre los nuevos datos
-    for client in websocket_clients:
-        await client.send_json({"message": "Nuevos datos disponibles"})
+    # Leer los datos desde el archivo /app/data/data.json
+    with open("/app/data/data.json", "r") as file:
+        saved_data = json.load(file)
+        
+    # Enviar los datos a todos los clientes WebSocket
+    await send_data_to_clients(saved_data)
 
     return {"message": "Datos recibidos y guardados"}
+
+@app.get("/get_initial_data")
+async def serve_initial_data():
+    # Leer los datos desde el archivo /app/data/data.json
+    with open("/app/data/data.json", "r") as file:
+        saved_data = json.load(file)
+    return JSONResponse(content=saved_data)
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     websocket_clients.append(websocket)
-
     try:
         while True:
             # Puedes mantener la conexión WebSocket abierta para enviar actualizaciones en tiempo real

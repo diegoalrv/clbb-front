@@ -15,4 +15,4 @@ services:
     ports:
       - "8000:8000" # Mapea el puerto 8000 del host al puerto 8000 del contenedor
     volumes:
-      - ./frontend/src/data:/app/data
+      - ./backend/data:/app/data      
