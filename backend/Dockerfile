@@ -11,7 +11,7 @@ COPY . .
 RUN pip install -r requirements.txt
 
 # Exponer el puerto 8000 para que la aplicación FastAPI esté disponible desde fuera del contenedor
-EXPOSE 8000
+EXPOSE 8900
 
 # Comando para ejecutar el script de inicio
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8900"]

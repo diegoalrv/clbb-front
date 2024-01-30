@@ -9,8 +9,8 @@ const DonutChart = ({ data }) => {
     datasets: [
       {
         data: data.tipos.map(tipo => (tipo.valor / total) * 100),
-        backgroundColor: ["#472db4","#00bfff","#7839e0","#57f0d9","#4168f0","#6000d9","#3ad3d3","#268df8","#80ffdb","#30daf7"],
-        hoverBackgroundColor: ["#472db4","#00bfff","#7839e0","#57f0d9","#4168f0","#6000d9","#3ad3d3","#268df8","#80ffdb","#30daf7"],
+        backgroundColor: ["#57cc99","#073b4c","#EF476F","#aeb8fe","#eddea4","#6000d9","#cbf3f0","#268df8","#80ffdb","#30daf7"],
+        hoverBackgroundColor: ["#57cc99","#073b4c","#EF476F","#aeb8fe","#eddea4","#6000d9","#cbf3f0","#268df8","#80ffdb","#30daf7"],
         borderWidth: 1,
       },
     ],

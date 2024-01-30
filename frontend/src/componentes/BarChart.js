@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
 const StackedBarChart = ({ data }) => {
-  const xLabels = data.xLabels;
+  // const xLabels = data.xLabels;
+  const xLabels = ['Poblacion', 'Edificacion', 'Comodidades']
 
   useEffect(() => {
     const ctx = document.getElementById('stackedBarChart').getContext('2d');

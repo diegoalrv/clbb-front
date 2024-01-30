@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+import uvicorn
 
 import json
 import asyncio
@@ -36,33 +37,36 @@ async def recibir_json(request: Request):
     with open("/app/data/data.json", "r") as file:
         saved_data = json.load(file)
         
-    # Enviar los datos a todos los clientes WebSocket
-    await send_data_to_clients(saved_data)
+    # # Enviar los datos a todos los clientes WebSocket
+    # await send_data_to_clients(saved_data)
 
     return {"message": "Datos recibidos y guardados"}
 
-@app.get("/get_initial_data")
-async def serve_initial_data():
-    # Leer los datos desde el archivo /app/data/data.json
-    with open("/app/data/data.json", "r") as file:
-        saved_data = json.load(file)
-    return JSONResponse(content=saved_data)
+# @app.get("/get_initial_data")
+# async def serve_initial_data():
+#     # Leer los datos desde el archivo /app/data/data.json
+#     with open("/app/data/data.json", "r") as file:
+#         saved_data = json.load(file)
+#     return JSONResponse(content=saved_data)
 
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    websocket_clients.append(websocket)
-    try:
-        while True:
-            # Puedes mantener la conexión WebSocket abierta para enviar actualizaciones en tiempo real
-            await asyncio.sleep(3600)  # Esperar 1 hora o ajusta el tiempo según tus necesidades
-    except WebSocketDisconnect:
-        websocket_clients.remove(websocket)
+# @app.websocket("/ws")
+# async def websocket_endpoint(websocket: WebSocket):
+#     await websocket.accept()
+#     websocket_clients.append(websocket)
+#     try:
+#         while True:
+#             # Puedes mantener la conexión WebSocket abierta para enviar actualizaciones en tiempo real
+#             await asyncio.sleep(3600)  # Esperar 1 hora o ajusta el tiempo según tus necesidades
+#     except WebSocketDisconnect:
+#         websocket_clients.remove(websocket)
 
-# Esta función maneja las actualizaciones en tiempo real en el frontend
-async def listen_for_updates():
-    async with websockets.connect("ws://localhost:8000/ws") as websocket:  # Cambia la URL según tu configuración
-        while True:
-            message = await websocket.recv()
-            # Maneja las actualizaciones en tiempo real en el frontend, por ejemplo, actualiza la interfaz de usuario
-            print("Mensaje del servidor:", message)
+# # Esta función maneja las actualizaciones en tiempo real en el frontend
+# async def listen_for_updates():
+#     async with websockets.connect("ws://localhost:8000/ws") as websocket:  # Cambia la URL según tu configuración
+#         while True:
+#             message = await websocket.recv()
+#             # Maneja las actualizaciones en tiempo real en el frontend, por ejemplo, actualiza la interfaz de usuario
+#             print("Mensaje del servidor:", message)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8900)

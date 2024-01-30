@@ -4,11 +4,14 @@ import Chart from 'chart.js/auto';
 const RadarChart = ({ data }) => {
   useEffect(() => {
     const ctx = document.getElementById('radarChart').getContext('2d');
-
+    var datalabels = data.categorias
+    for (var i = 0; i < datalabels.length; i++) {
+      datalabels[i] = datalabels[i].replace("_d"," ");
+    }
     const chart = new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: data.categorias,
+        labels: datalabels,
         datasets: [
           {
             label: 'Referencia',
