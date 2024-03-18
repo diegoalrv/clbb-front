@@ -42,6 +42,11 @@ async def recibir_json(request: Request):
 
     return {"message": "Datos recibidos y guardados"}
 
+@app.get("/hola")
+async def hola(request: Request):
+    a = a
+    return {"message": "Datos recibidos y guardados"}
+
 # @app.get("/get_initial_data")
 # async def serve_initial_data():
 #     # Leer los datos desde el archivo /app/data/data.json

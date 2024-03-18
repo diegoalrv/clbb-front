@@ -1,21 +1,27 @@
 version: '3.8'
 
 services:
-  # frontend:
-  #   build: ./frontend
-  #   volumes:
-  #     - ./frontend/src/data:/app/data
-  #   ports:
-  #     - "3000:3000" # Mapea el puerto 3000 del host al puerto 80 del contenedor
-  #   depends_on:
-  #     - backend
+  frontend:
+    build: ./frontend
+    restart: always
+    volumes:
+      # - ./frontend/src/data:/app/data
+      - ./frontend:/app
+    ports:
+      - "3000:3000" # Mapea el puerto 3000 del host al puerto 80 del contenedor
+    networks:
+      - clbb
+    depends_on:
+      - backend
 
   backend:
     build: ./backend
+    restart: always
     ports:
-      - "8900:8900" # Mapea el puerto 8000 del host al puerto 8000 del contenedor
+      - "8900:8900" # Mapea el puerto 8900 del host al puerto 8900 del contenedor
     volumes:
       - ./frontend/src/data:/app/data
+      # - ./backend:/app
     networks:
       - clbb
 
