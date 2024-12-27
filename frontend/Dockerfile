@@ -1,7 +1,12 @@
-FROM node:14-alpine
+FROM node:18-alpine
+
+# Establecer directorio de trabajo
 WORKDIR /app
+
+# Copiar y construir
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 3000
-CMD ["npm","start"]
+
+# Especificar el comando que se ejecutará al iniciar el contenedor
+CMD ["npm", "run", "build"]
