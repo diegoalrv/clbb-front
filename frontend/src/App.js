@@ -22,7 +22,7 @@ const App = () => {
   const prevStateRef = useRef(null); // Referencia para almacenar el estado anterior
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:9901/api/actions/get_current_dashboard_data/'; // Reemplaza con tu URL real
+    const apiUrl = 'http://192.168.31.120:8500/api/actions/get_current_dashboard_data/'; // Reemplaza con tu URL real
 
     let isMounted = true; // Para evitar actualizaciones de estado si el componente está desmontado
     let intervalId; // ID del intervalo
